@@ -1,0 +1,6 @@
+{
+  "name": "NewgenONE — The Midnight Parcel Dispatch",
+  "description": "An interactive Secret Santa enterprise AI discovery experience for NewgenONE. Solve five leadership scenarios in five minutes to unwrap five enterprise AI agents.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

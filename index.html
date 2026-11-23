@@ -1,0 +1,548 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>NewgenONE — Santa’s Secret AI Mission</title>
+    <meta
+      name="description"
+      content="An interactive Secret Santa enterprise AI discovery experience by NewgenONE. Register your pass and complete five festive leadership challenges."
+    />
+    <meta property="og:title" content="NewgenONE — Santa’s Secret AI Mission" />
+    <meta
+      property="og:description"
+      content="Five sealed Christmas parcels. Five enterprise challenges. Unwrap Santa’s mission with NewgenONE."
+    />
+    <meta property="og:type" content="website" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body>
+    <canvas id="snow-canvas" aria-hidden="true"></canvas>
+
+    <!-- Sticky Mobile-First TopBar -->
+    <header class="topbar">
+      <div class="container topbar-inner">
+        <button type="button" id="brand-home-btn" class="brand-btn" aria-label="Newgen Home">
+          <img
+            src="/assets/aistudio/newgen-logo_a94fff17.png"
+            alt="Newgen"
+            class="brand-logo-img"
+            width="148"
+            height="36"
+          />
+        </button>
+
+        <nav id="topbar-nav" class="topbar-nav" aria-label="Primary sections">
+          <a href="#story-section" class="nav-link">Santa’s Story</a>
+          <a href="#vault-section" class="nav-link">The Workshop</a>
+          <a href="#register-section" class="nav-link">Christmas Pass</a>
+        </nav>
+
+        <div id="topbar-progress" class="topbar-progress" hidden>
+          <div
+            class="progress-ring-wrap"
+            role="progressbar"
+            aria-label="Challenge completion progress"
+            aria-valuemin="0"
+            aria-valuemax="5"
+            aria-valuenow="0"
+            id="progress-progressbar"
+          >
+            <div class="progress-ring-box">
+              <svg width="36" height="36" viewBox="0 0 36 36" class="progress-ring-svg" aria-hidden="true">
+                <circle
+                  cx="18"
+                  cy="18"
+                  r="15.5"
+                  fill="none"
+                  stroke="rgba(255, 255, 255, 0.18)"
+                  stroke-width="2.5"
+                />
+                <circle
+                  id="progress-ring-arc"
+                  cx="18"
+                  cy="18"
+                  r="15.5"
+                  fill="none"
+                  stroke="#F28518"
+                  stroke-width="2.5"
+                  stroke-linecap="round"
+                  stroke-dasharray="97.39"
+                  stroke-dashoffset="97.39"
+                />
+              </svg>
+              <span id="progress-ring-num" class="progress-ring-num">01</span>
+            </div>
+            <span id="progress-label" class="progress-label-desktop">Challenge 1 of 5</span>
+            <span id="progress-label-mobile" class="progress-label-mobile">0/5</span>
+          </div>
+        </div>
+
+        <div class="topbar-actions">
+          <button type="button" id="header-cta-btn" class="btn btn-primary btn-sm">
+            Claim Pass
+          </button>
+          <button type="button" id="header-restart-btn" class="btn btn-outline-light btn-sm" hidden>
+            Restart
+          </button>
+        </div>
+      </div>
+
+      <!-- Festive Twinkling Christmas Fairy Lights Garland -->
+      <div class="garland-bar" aria-hidden="true">
+        <div class="garland-wire"></div>
+        <div class="garland-bulbs" id="garland-bulbs"></div>
+      </div>
+    </header>
+
+    <main class="main-shell">
+      <!-- =========================================================
+           PAGE 1: HOMEPAGE (Santa Hero + Workshop + 3rd Section Form)
+           ========================================================= -->
+      <div id="page-home" class="page-view">
+        <!-- SECTION 1: Santa Claus Hero & Interactive Christmas Vault -->
+        <section id="story-section" class="hero-section">
+          <!-- Gliding Santa Sleigh in Night Sky -->
+          <div class="sleigh-sky" aria-hidden="true">
+            <div id="santa-sleigh" class="santa-sleigh">
+              <svg viewBox="0 0 300 68" width="240" height="54" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <!-- Reindeer Lead & Second -->
+                <g fill="#FFB973" fill-opacity="0.45">
+                  <path d="M254 34c4-4 10-4 13 0l5-6 3 2-3 7c3 2 5 6 4 10h-4v-6l-6 2v4h-4v-5l-7 1-2 4h-4l2-6-3-3 6-4z"/>
+                  <circle cx="277" cy="31" r="2.2" fill="#E53935"/>
+                  <path d="M210 36c4-4 10-4 13 0l5-6 3 2-3 7c3 2 5 6 4 10h-4v-6l-6 2v4h-4v-5l-7 1-2 4h-4l2-6-3-3 6-4z"/>
+                </g>
+                <!-- Reins -->
+                <path d="M168 42 Q212 36 258 37" stroke="#FFB973" stroke-opacity="0.35" stroke-width="1.2" stroke-dasharray="3 3"/>
+                <!-- Sleigh & Santa -->
+                <path d="M98 48 C114 48 148 48 164 40 C168 38 172 41 168 46 C158 56 114 56 92 54 C85 53 86 48 98 48 Z" fill="#F28518" fill-opacity="0.5"/>
+                <path d="M104 34 L148 34 L156 47 L100 47 Z" fill="#C82333" fill-opacity="0.55"/>
+                <!-- Santa Hat & Sack -->
+                <circle cx="136" cy="24" r="6" fill="#FFFFFF" fill-opacity="0.6"/>
+                <path d="M130 22 C133 13 142 13 145 20 Z" fill="#C82333" fill-opacity="0.7"/>
+                <circle cx="146" cy="18" r="2.4" fill="#FFFFFF" fill-opacity="0.75"/>
+                <ellipse cx="116" cy="28" rx="11" ry="8" fill="#F28518" fill-opacity="0.55"/>
+              </svg>
+            </div>
+          </div>
+
+          <!-- Hanging Swinging Baubles -->
+          <div class="ornaments-row" aria-hidden="true">
+            <button type="button" class="ornament-hang ornament-left" tabindex="-1" data-ornament>
+              <span class="ornament-string"></span>
+              <span class="ornament-ball ball-red"></span>
+            </button>
+            <button type="button" class="ornament-hang ornament-right" tabindex="-1" data-ornament>
+              <span class="ornament-string"></span>
+              <span class="ornament-ball ball-orange"></span>
+            </button>
+          </div>
+
+          <div class="container hero-grid">
+            <div class="hero-copy">
+              <div class="kicker-row">
+                <button type="button" id="santa-avatar-btn" class="santa-avatar-btn" aria-label="Celebrate with Santa">
+                  <svg viewBox="0 0 64 64" width="52" height="52" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                    <circle cx="32" cy="32" r="30" fill="#183A2E" stroke="#F28518" stroke-width="1.6"/>
+                    <!-- Santa Hat -->
+                    <path d="M18 26 C21 12 37 10 47 22 L44 27 H18 Z" fill="#C82333"/>
+                    <circle cx="48" cy="22" r="4" fill="#FFFFFF"/>
+                    <rect x="16" y="24" width="30" height="5.5" rx="2.75" fill="#FFFFFF"/>
+                    <!-- Face & Beard -->
+                    <circle cx="31" cy="33" r="9.5" fill="#FCD5B5"/>
+                    <circle cx="27.5" cy="32" r="1.4" fill="#1F2937"/>
+                    <circle cx="34.5" cy="32" r="1.4" fill="#1F2937"/>
+                    <circle cx="31" cy="34.8" r="2" fill="#E57373"/>
+                    <path d="M19 36 C19 48 25 54 31 54 C37 54 43 48 43 36 C39 39 35 39 31 38 C27 39 23 39 19 36 Z" fill="#FFFFFF"/>
+                    <path d="M25 36.5 Q31 40 37 36.5" stroke="#E5E4E3" stroke-width="1.4" stroke-linecap="round"/>
+                  </svg>
+                </button>
+                <p class="kicker-text">
+                  <strong class="accent-orange">Santa’s North Pole Dispatch</strong>
+                  <span aria-hidden="true">·</span>
+                  <span>Five Christmas Gifts</span>
+                  <span aria-hidden="true">·</span>
+                  <span>Tap Santa for Cheer</span>
+                </p>
+              </div>
+
+              <h1 class="hero-title">
+                Santa left five sealed AI gifts under your enterprise tree.
+              </h1>
+
+              <p class="hero-subtitle">
+                Straight from the North Pole Workshop, Santa’s sleigh delivered five encrypted
+                holiday parcels for your organization. Solve five quick leadership clues to break
+                the festive seals and complete Santa’s Christmas mission.
+              </p>
+
+              <div class="hero-cta-group">
+                <button type="button" class="btn btn-primary btn-lg scroll-to-register">
+                  <span>Unwrap Your Christmas Pass</span>
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                    <line x1="5" y1="12" x2="19" y2="12"></line>
+                    <polyline points="12 5 19 12 12 19"></polyline>
+                  </svg>
+                </button>
+                <span class="hero-note">
+                  No technical knowledge required · Festive clues included
+                </span>
+              </div>
+            </div>
+
+            <!-- Interactive Christmas Gift Showcase -->
+            <div class="vault-preview-card">
+              <div class="vault-card-head">
+                <span class="accent-orange font-semibold">Santa’s Sleigh Sack</span>
+                <span id="preview-parcel-counter" class="mono-num">Gift 01 / 05</span>
+              </div>
+
+              <div class="vault-card-stage">
+                <button
+                  type="button"
+                  id="preview-parcel-trigger"
+                  class="parcel-interactive-btn"
+                  aria-label="Shake Christmas gift parcel"
+                >
+                  <div id="preview-parcel-art" class="parcel-float"></div>
+                </button>
+                <div class="vault-seal-line">
+                  <span class="holly-dot" aria-hidden="true"></span>
+                  <span id="preview-domain-label">Banking Gift</span>
+                  <span aria-hidden="true">·</span>
+                  <span>Tap gift to shake</span>
+                </div>
+                <h2 id="preview-scenario-title" class="vault-scenario-title">
+                  The Year-End Credit Surge
+                </h2>
+              </div>
+
+              <div id="preview-selector-grid" class="preview-selector-grid" role="group" aria-label="Preview the five Christmas gifts"></div>
+            </div>
+          </div>
+        </section>
+
+        <!-- SECTION 2: Santa's Workshop & Five Domains (Moodboard Light Surface #F2EFE9) -->
+        <section id="vault-section" class="vault-section">
+          <div class="container">
+            <div class="section-header-split">
+              <div>
+                <p class="section-eyebrow">Inside Santa’s AI Workshop</p>
+                <h2 class="section-title-dark">
+                  Connect, agility, and transformation—wrapped into five holiday dilemmas.
+                </h2>
+              </div>
+              <button type="button" class="btn btn-charcoal scroll-to-register">
+                <span>Go to Christmas Pass</span>
+                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                  <line x1="12" y1="5" x2="12" y2="19"></line>
+                  <polyline points="19 12 12 19 5 12"></polyline>
+                </svg>
+              </button>
+            </div>
+
+            <div class="steps-row">
+              <article class="step-item">
+                <p class="step-index">01. Sign Santa’s Nice List</p>
+                <h3>Claim your workshop pass</h3>
+                <p>
+                  Enter your name, work email, and industry in the third section below so Santa can
+                  prepare your five holiday scenarios.
+                </p>
+              </article>
+
+              <article class="step-item">
+                <p class="step-index">02. Answer Five Festive Clues</p>
+                <h3>Choose the smartest path</h3>
+                <p>
+                  Solve practical leadership questions across banking, insurance, documents,
+                  compliance, and operations—with North Pole hints if you miss.
+                </p>
+              </article>
+
+              <article class="step-item">
+                <p class="step-index">03. Complete Santa’s Mission</p>
+                <h3>Reach the holiday finish</h3>
+                <p>
+                  Watch your Christmas progress ring fill with every answered dilemma until all five
+                  gifts are delivered.
+                </p>
+              </article>
+            </div>
+
+            <div class="domains-grid" id="home-domains-grid"></div>
+
+            <div class="mid-cta-strip">
+              <div>
+                <p class="mid-cta-title">Ready to open Santa’s five encrypted gifts?</p>
+                <p class="mid-cta-sub">
+                  Sign the Christmas Pass ledger below to jump straight into the five questions.
+                </p>
+              </div>
+              <button type="button" class="btn btn-primary scroll-to-register">
+                <span>Sign Santa’s Ledger</span>
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                  <line x1="12" y1="5" x2="12" y2="19"></line>
+                  <polyline points="19 12 12 19 5 12"></polyline>
+                </svg>
+              </button>
+            </div>
+          </div>
+        </section>
+
+        <!-- SECTION 3: 3rd Homepage Section — Participant Registration Form -->
+        <section id="register-section" class="register-section">
+          <div class="container">
+            <div class="register-card">
+              <div class="register-aside">
+                <div>
+                  <div class="santa-seal-badge" aria-hidden="true">
+                    <svg viewBox="0 0 64 64" width="52" height="52" fill="none" xmlns="http://www.w3.org/2000/svg">
+                      <circle cx="32" cy="32" r="30" fill="#C82333" stroke="#FFB973" stroke-width="1.6"/>
+                      <path d="M22 39 L32 17 L42 39 H22 Z" fill="#184A36" stroke="#FFFFFF" stroke-width="1.4" stroke-linejoin="round"/>
+                      <circle cx="32" cy="16" r="3" fill="#FFB973"/>
+                      <rect x="29.5" y="39" width="5" height="6" fill="#FFB973"/>
+                    </svg>
+                  </div>
+                  <p class="section-eyebrow-bright">Section 03 · Santa’s Nice List</p>
+                  <h2 class="register-aside-title">
+                    Write your name on the holiday pass to launch the questionnaire.
+                  </h2>
+                  <p class="register-aside-copy">
+                    Complete this quick Christmas ledger to proceed directly into Santa’s five
+                    interactive enterprise challenges.
+                  </p>
+                </div>
+
+                <div class="register-aside-meta">
+                  <p>5 festive enterprise scenarios</p>
+                  <p>Santa’s clues on hand · Direct question flow</p>
+                </div>
+              </div>
+
+              <div class="register-form-pane">
+                <form id="registration-form" novalidate>
+                  <div class="form-head">
+                    <h3>Your Christmas Mission Pass</h3>
+                    <p>All fields are required to proceed to the questionnaire.</p>
+                  </div>
+
+                  <div class="form-grid-2">
+                    <div class="field-group">
+                      <label for="reg-full-name">Full Name</label>
+                      <input
+                        id="reg-full-name"
+                        name="fullName"
+                        type="text"
+                        autocomplete="name"
+                        placeholder="Jordan Alvarez"
+                        required
+                      />
+                      <p class="field-error" id="err-full-name" aria-live="polite"></p>
+                    </div>
+
+                    <div class="field-group">
+                      <label for="reg-work-email">Work Email</label>
+                      <input
+                        id="reg-work-email"
+                        name="workEmail"
+                        type="email"
+                        autocomplete="email"
+                        placeholder="jordan.alvarez@enterprise.com"
+                        required
+                      />
+                      <p class="field-error" id="err-work-email" aria-live="polite"></p>
+                    </div>
+
+                    <div class="field-group">
+                      <label for="reg-company">Company</label>
+                      <input
+                        id="reg-company"
+                        name="company"
+                        type="text"
+                        autocomplete="organization"
+                        placeholder="Northbridge Financial Group"
+                        required
+                      />
+                      <p class="field-error" id="err-company" aria-live="polite"></p>
+                    </div>
+
+                    <div class="field-group">
+                      <label for="reg-job-title">Job Title</label>
+                      <input
+                        id="reg-job-title"
+                        name="jobTitle"
+                        type="text"
+                        autocomplete="organization-title"
+                        placeholder="VP of Digital Operations"
+                        required
+                      />
+                      <p class="field-error" id="err-job-title" aria-live="polite"></p>
+                    </div>
+                  </div>
+
+                  <div class="field-group">
+                    <label for="reg-industry">Industry</label>
+                    <select id="reg-industry" name="industry" required>
+                      <option value="">Select your primary industry</option>
+                      <option value="Banking &amp; Financial Services">Banking &amp; Financial Services</option>
+                      <option value="Insurance">Insurance</option>
+                      <option value="Healthcare &amp; Life Sciences">Healthcare &amp; Life Sciences</option>
+                      <option value="Government &amp; Public Sector">Government &amp; Public Sector</option>
+                      <option value="Manufacturing &amp; Supply Chain">Manufacturing &amp; Supply Chain</option>
+                      <option value="Retail &amp; Consumer Goods">Retail &amp; Consumer Goods</option>
+                      <option value="Telecom &amp; Media">Telecom &amp; Media</option>
+                      <option value="Other Enterprise">Other Enterprise</option>
+                    </select>
+                    <p class="field-error" id="err-industry" aria-live="polite"></p>
+                  </div>
+
+                  <div class="consent-box">
+                    <label class="consent-label">
+                      <input id="reg-consent" name="consentAccepted" type="checkbox" />
+                      <span class="consent-text">
+                        I agree to receive updates from NewgenONE in accordance with the
+                        configurable privacy notice (<a href="#privacy-notice" id="privacy-link">Privacy Notice</a>).
+                      </span>
+                    </label>
+                    <p class="field-error" id="err-consent" aria-live="polite"></p>
+                  </div>
+
+                  <button type="submit" id="reg-submit-btn" class="btn btn-primary btn-lg btn-full">
+                    <span>Enter Santa’s Questionnaire</span>
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                      <line x1="5" y1="12" x2="19" y2="12"></line>
+                      <polyline points="12 5 19 12 12 19"></polyline>
+                    </svg>
+                  </button>
+                </form>
+              </div>
+            </div>
+          </div>
+        </section>
+      </div>
+
+      <!-- =========================================================
+           PAGE 2: QUESTIONNAIRE + CLEAN THANK YOU PAGE
+           ========================================================= -->
+      <div id="page-mission" class="page-view" hidden>
+        <div class="container mission-container">
+          <!-- Questionnaire View -->
+          <section id="questionnaire-view">
+            <div class="mission-banner">
+              <div>
+                <p id="mission-greeting" class="section-eyebrow-bright">
+                  Santa’s Questionnaire · Prepared for You
+                </p>
+                <p class="mission-rules-line">
+                  Choose the right leadership answer to move straight to the next Christmas parcel.
+                </p>
+              </div>
+              <div class="mission-progress-meta">
+                <div class="candy-track" aria-hidden="true">
+                  <div id="linear-progress-fill" class="candy-fill" style="width: 20%"></div>
+                </div>
+                <span id="dispatch-step-text" class="mono-num">Question 01 of 05</span>
+              </div>
+            </div>
+
+            <div class="challenge-grid">
+              <!-- Left Interactive Parcel Pedestal -->
+              <aside class="parcel-pedestal">
+                <div class="pedestal-head">
+                  <span id="pedestal-parcel-num">Gift 01</span>
+                  <span id="pedestal-domain-tag">Banking</span>
+                </div>
+
+                <div class="pedestal-body">
+                  <button
+                    type="button"
+                    id="active-parcel-trigger"
+                    class="parcel-interactive-btn"
+                    aria-label="Tap gift parcel"
+                  >
+                    <div id="active-parcel-art"></div>
+                  </button>
+                  <h2 id="pedestal-title" class="pedestal-title">The Year-End Credit Surge</h2>
+                </div>
+
+                <div class="pedestal-foot">
+                  Select an option to advance
+                </div>
+              </aside>
+
+              <!-- Right Question Card -->
+              <div class="challenge-stage">
+                <div id="question-panel" class="question-card">
+                  <div>
+                    <p id="question-kicker" class="section-eyebrow-bright">Scenario 01 · Banking</p>
+                    <h1 id="question-title" class="question-title"></h1>
+                    <p id="question-body" class="question-body"></p>
+                    <p id="question-prompt" class="question-prompt"></p>
+
+                    <div id="options-container" class="options-list" role="radiogroup"></div>
+                  </div>
+
+                  <div id="hint-box" class="hint-box" role="status" aria-live="polite" hidden>
+                    <div class="hint-inner">
+                      <svg class="hint-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#F28518" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                        <circle cx="12" cy="12" r="10"></circle>
+                        <line x1="12" y1="8" x2="12" y2="12"></line>
+                        <line x1="12" y1="16" x2="12.01" y2="16"></line>
+                      </svg>
+                      <div>
+                        <p class="hint-heading">Not quite that sleigh route — try another option.</p>
+                        <p id="wrong-feedback-text" class="hint-wrong-text"></p>
+                        <p class="hint-clue-text">
+                          <strong>Santa’s Clue:</strong> <span id="patron-hint-text"></span>
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </section>
+
+          <!-- Clean Normal Thank You View (No additional CTAs or detail panels) -->
+          <section id="thankyou-view" class="thankyou-section" hidden>
+            <div class="thankyou-card" id="thankyou-card">
+              <div class="thankyou-wreath" aria-hidden="true">
+                <svg viewBox="0 0 88 88" width="82" height="82" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <circle cx="44" cy="44" r="36" stroke="#184A36" stroke-width="8" stroke-dasharray="10 4"/>
+                  <circle cx="44" cy="44" r="31" fill="#F28518"/>
+                  <circle cx="24" cy="16" r="4.5" fill="#C82333"/>
+                  <circle cx="64" cy="16" r="4.5" fill="#C82333"/>
+                  <circle cx="44" cy="10" r="5" fill="#FFB973"/>
+                  <polyline points="31 45 40 54 58 35" stroke="#FFFFFF" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+              </div>
+              <p class="section-eyebrow">NewgenONE Secret Santa</p>
+              <h1 id="thankyou-headline" class="thankyou-title">Thank you!</h1>
+              <p id="thankyou-message" class="thankyou-message">
+                Thank you for completing all five Secret Santa challenges. Wishing you and your
+                team a joyful holiday season.
+              </p>
+            </div>
+          </section>
+        </div>
+      </div>
+    </main>
+
+    <!-- Centered Footer with Newgen Copyright Only -->
+    <footer class="footer">
+      <div class="container footer-inner">
+        <p id="copyright-text">© 2026 Newgen Software Technologies Ltd. All rights reserved.</p>
+      </div>
+    </footer>
+
+    <script type="module" src="./app.js"></script>
+  </body>
+</html>
